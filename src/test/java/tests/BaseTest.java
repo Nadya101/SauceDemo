@@ -32,8 +32,8 @@ public class BaseTest {
         checkoutPage = new CheckoutPage(driver);
     }
 
-    @AfterMethod
-    public void closeDriver() {
-        driver.quit();
-    }
+//    @AfterMethod
+//    public void closeDriver() {
+//        driver.quit();
+//    }
 }

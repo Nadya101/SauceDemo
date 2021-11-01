@@ -24,7 +24,7 @@ public class LoginPage2 extends BasePage {
         return driver.findElement(ERROR_MESSAGE).getText();
     }
 
-    public String getTypeOfPasswordField() {
+    public String getPasswordFieldText() {
         return driver.findElement(PASSWORD_INPUT).getAttribute("type");
     }
 }

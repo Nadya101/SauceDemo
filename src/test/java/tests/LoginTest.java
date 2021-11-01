@@ -45,8 +45,8 @@ public class LoginTest extends BaseTest {
     @Test
     public void passwordTextHiddenTest() {
         loginPage.openPage("https://www.saucedemo.com/");
-        loginPage.getTypeOfPasswordField();
-        Assert.assertEquals(loginPage.getTypeOfPasswordField(), "password");
+        loginPage.getPasswordFieldText();
+        Assert.assertEquals(loginPage.getPasswordFieldText(), "password");
     }
 
     @Test

@@ -19,10 +19,9 @@ public class CartTest extends BaseTest {
         loginPage.openPage("https://www.saucedemo.com/");
         loginPage.login("standard_user", "secret_sauce");
         productsPage.addProductToCart("Sauce Labs Bolt T-Shirt");
-        productsPage.openPage("https://www.saucedemo.com/cart.html");
-        cartPage.proceedShopping();
         productsPage.addProductToCart("Sauce Labs Backpack");
-        Assert.assertEquals(cartPage.getQuantityOfProducts(), 2, "Product 2 replace product 1!");
+        productsPage.openPage("https://www.saucedemo.com/cart.html");
+        Assert.assertEquals(cartPage.getTotalElementsInCart(), 2, "Product wasn't added!");
     }
 
     @Test
@@ -31,8 +30,8 @@ public class CartTest extends BaseTest {
         loginPage.login("standard_user", "secret_sauce");
         productsPage.addProductToCart("Sauce Labs Bolt T-Shirt");
         productsPage.openPage("https://www.saucedemo.com/cart.html");
-        cartPage.deleteProduct();
-        Assert.assertEquals(cartPage.getQuantityOfProducts(), 0);
+        cartPage.deleteProduct("Sauce Labs Bolt T-Shirt");
+        Assert.assertFalse(cartPage.findProductByProductName("Sauce Labs Bolt T-Shirt"));
     }
 
     @Test
@@ -43,6 +42,6 @@ public class CartTest extends BaseTest {
         cartPage.logout();
         productsPage.openPage("https://www.saucedemo.com/cart.html");
         loginPage.login("performance_glitch_user", "secret_sauce");
-        Assert.assertEquals(cartPage.getQuantityOfProducts(), 0);
+        Assert.assertEquals(cartPage.getQuantityOfProducts("Sauce Labs Bolt T-Shirt"), 0);
     }
 }

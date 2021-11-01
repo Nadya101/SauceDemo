@@ -1,6 +1,6 @@
-**CurtPage Checklist:**
+**CartPage Checklist:**
 1-add any product => passed.
-2-add two products => failed _(replace product)_.
+2-add two products => passed.
 3-remove product => passed.
 4-empty cart for another user => failed _(there is some element)_.
 
@@ -11,4 +11,3 @@
 4-incorrect password=> passed.
 5-password is hidden => passed.
 6-login and password matched => passed.
-
