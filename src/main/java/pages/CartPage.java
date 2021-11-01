@@ -37,7 +37,7 @@ private static final String SHOPPING_CART_BADGE = "//*[@class = 'shopping_cart_b
         driver.findElement(By.xpath(String.format(REMOVE_BUTTON, productName))).click();
     }
 
-    public boolean findProductByProductName(String productName) {
+    public boolean isProductDisplayed(String productName) {
         List<WebElement> elements = driver.findElements(By.xpath(String.format(SEARCH_ELEMENT_BY_NAME, productName)));
         return elements.size() > 0;
     }
@@ -46,7 +46,6 @@ private static final String SHOPPING_CART_BADGE = "//*[@class = 'shopping_cart_b
         String total = driver.findElement(By.xpath(SHOPPING_CART_BADGE)).getText();
         return Integer.parseInt(total);
     }
-
 
     public void clickCheckoutButton() {
         driver.findElement(By.xpath(CHECKOUT_BUTTON)).click();

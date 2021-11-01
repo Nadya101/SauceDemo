@@ -31,7 +31,7 @@ public class CartTest extends BaseTest {
         productsPage.addProductToCart("Sauce Labs Bolt T-Shirt");
         productsPage.openPage("https://www.saucedemo.com/cart.html");
         cartPage.deleteProduct("Sauce Labs Bolt T-Shirt");
-        Assert.assertFalse(cartPage.findProductByProductName("Sauce Labs Bolt T-Shirt"));
+        Assert.assertFalse(cartPage.isProductDisplayed("Sauce Labs Bolt T-Shirt"));
     }
 
     @Test
