@@ -12,7 +12,7 @@ public class CartPage extends BasePage {
     public CartPage(WebDriver driver) {
         super(driver);
     }
-
+public static final String CART_URL = "/cart.html";
     private static final String PRODUCT_PRICE = "//*[text()='%s']/ancestor::*[@class='cart_item']" +
             "//*[@class='inventory_item_price']";
     private static final String CHECKOUT_BUTTON = "//*[@data-test = 'checkout']";
@@ -22,8 +22,13 @@ public class CartPage extends BasePage {
             "//*[@class='inventory_item_name']";
     private static final String PRODUCT_QUANTITY = "//*[text()='%s']/ancestor::*[@class='cart_item']" +
             "//*[@class='cart_quantity']";
-private static final String SHOPPING_CART_BADGE = "//*[@class = 'shopping_cart_badge']";
+    private static final String SHOPPING_CART_BADGE = "//*[@class = 'shopping_cart_badge']";
 
+    public CartPage openPage(){
+        openPage(BASE_URL+CART_URL);
+        waitForPageLoaded();
+        return this;
+    }
     public String getProductPrice(String productName) {
         return driver.findElement(By.xpath(String.format(PRODUCT_PRICE, productName))).getText();
     }
@@ -45,9 +50,5 @@ private static final String SHOPPING_CART_BADGE = "//*[@class = 'shopping_cart_b
     public int getTotalElementsInCart(){
         String total = driver.findElement(By.xpath(SHOPPING_CART_BADGE)).getText();
         return Integer.parseInt(total);
-    }
-
-    public void clickCheckoutButton() {
-        driver.findElement(By.xpath(CHECKOUT_BUTTON)).click();
     }
 }
