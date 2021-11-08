@@ -14,7 +14,7 @@ public class ProductsPage extends BasePage {
 
     public ProductsPage openPage() {
         openPage(BASE_URL + PRODUCT_URL);
-        return new ProductsPage(driver);
+        return this;
     }
 
     public void addProductToCart(String productName) {

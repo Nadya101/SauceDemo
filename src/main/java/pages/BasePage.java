@@ -5,8 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 public class BasePage {
     WebDriver driver;
@@ -17,8 +16,8 @@ public class BasePage {
     }
 
     public static final String BASE_URL = "https://www.saucedemo.com";
-    private static final By LOG_OUT = By.id("logout_sidebar_link");
-    private static final By MENU = By.id("react-burger-menu-btn");
+    private static final By LOG_OUT_BUTTON = By.id("logout_sidebar_link");
+    private static final By MENU_BUTTON = By.id("react-burger-menu-btn");
 
     public void openPage(String url) {
         driver.get(url);
@@ -33,7 +32,7 @@ public class BasePage {
     }
 
     public void logout() {
-        driver.findElement(MENU).click();
-        driver.findElement(LOG_OUT).click();
+        driver.findElement(MENU_BUTTON).click();
+        driver.findElement(LOG_OUT_BUTTON).click();
     }
 }

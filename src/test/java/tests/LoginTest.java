@@ -1,15 +1,24 @@
 package tests;
 
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {
+    @DataProvider(name = "User data")
+    public Object[][] inputForITechTask() {
+        return new Object[][]{
+                {"standard_user", "secret_sauce", "Sauce Labs Bolt T-Shirt", "$15.99"},
+                {"", "secret_sauce", "Sauce Labs Bolt T-Shirt", "$15.99"},
+                {"standard_user", "","Sauce Labs Bolt T-Shirt", "$15.99"},
+        };
+    }
 
-    @Test
-    public void loginWithCorrectDataTest() {
+    @Test(dataProvider = "User data")
+    public void loginWithCorrectDataTest(String login, String password, String productName, String expectedPrice) {
         loginPage.openPage()
-                .login("standard_user", "secret_sauce");
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/inventory.html");
+                .login(login, password);
+        Assert.assertEquals(cartPage.getProductPrice(productName), expectedPrice);
     }
 
     @Test
