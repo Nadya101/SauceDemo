@@ -10,8 +10,6 @@ import pages.CheckoutPage;
 import pages.ProductsPage;
 import pages.LoginPage2;
 
-import java.util.concurrent.TimeUnit;
-
 public class BaseTest {
     WebDriver driver;
     ProductsPage productsPage;
@@ -23,9 +21,6 @@ public class BaseTest {
     public void initTest() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-
         loginPage = new LoginPage2(driver);
         productsPage = new ProductsPage(driver);
         cartPage = new CartPage(driver);
