@@ -46,7 +46,7 @@ public class LoginTest extends BaseTest {
     @Test
     public void lockingUserTest() {
         loginPage.openPage("https://www.saucedemo.com/");
-        loginPage.login(System.getProperty("username"), System.getProperty("password"));
+        loginPage.login("locked_out_user", "secret_sauce");
         Assert.assertEquals(loginPage.getErrorText(), "Epic sadface: Sorry, this user has been locked out.");
     }
 }

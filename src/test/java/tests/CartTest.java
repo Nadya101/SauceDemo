@@ -18,9 +18,10 @@ public class CartTest extends BaseTest {
     public void addTwoProductsToCartTest() {
         loginPage.openPage()
                 .login("standard_user", "secret_sauce")
-                .addProductToCart("Sauce Labs Bolt T-Shirt");
+                .addProductToCart("Sauce Labs Bolt T-Shirt")
+                .addProductToCart("Sauce Labs Backpack");
         cartPage.openPage();
-        Assert.assertEquals(cartPage.getTotalElementsInCart(), 2, "Product wasn't added!");
+        Assert.assertEquals(cartPage.getTotalElementsInCart(), 2, "Product wasn't added correctly!");
     }
 
     @Test

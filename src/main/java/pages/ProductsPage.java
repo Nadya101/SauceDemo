@@ -17,7 +17,8 @@ public class ProductsPage extends BasePage {
         return this;
     }
 
-    public void addProductToCart(String productName) {
+    public ProductsPage addProductToCart(String productName) {
         driver.findElement(By.xpath(String.format(ADD_PRODUCT_TO_CART_BUTTON, productName))).click();
+        return this;
     }
 }
