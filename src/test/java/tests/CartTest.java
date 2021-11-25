@@ -8,7 +8,7 @@ public class CartTest extends BaseTest {
     @Test
     public void addProductToCartTest() {
         loginPage.openPage()
-                .login("standard_user", "secret_sauce")
+                .login(System.getProperty("username"), System.getProperty("password"))
                 .addProductToCart("Sauce Labs Bolt T-Shirt");
         cartPage.openPage();
         Assert.assertEquals(cartPage.getProductPrice("Sauce Labs Bolt T-Shirt"), "$15.99");
