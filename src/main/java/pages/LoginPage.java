@@ -15,12 +15,11 @@ public class LoginPage extends BasePage {
     private static final By LOGIN_BUTTON = By.xpath("//*[@id='login-button']");
     private static final By ERROR_MESSAGE = By.xpath("//*[@data-test = 'error']");
 
-    public LoginPage openPage() {
+    public LoginPage openLoginPage() {
         openPage(BASE_URL);
         waitForPageLoaded();
         return this;
     }
-
 
 
     @Step("Login as username: '{username}' and password: '{password}'")

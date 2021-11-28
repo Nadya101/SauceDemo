@@ -25,6 +25,7 @@ public class CartPage extends BasePage {
     private static final String PRODUCT_QUANTITY = "//*[text()='%s']/ancestor::*[@class='cart_item']" +
             "//*[@class='cart_quantity']";
     private static final String SHOPPING_CART_BADGE = "//*[@class = 'shopping_cart_badge']";
+    private static final By MENU_BUTTON = By.id("react-burger-menu-btn");
 
     public CartPage openPage() {
         openPage(BASE_URL + CART_URL);
@@ -54,5 +55,13 @@ public class CartPage extends BasePage {
     public int getTotalElementsInCart() {
         String total = driver.findElement(By.xpath(SHOPPING_CART_BADGE)).getText();
         return Integer.parseInt(total);
+    }
+
+    @Step("Open menu")
+    public MenuModalPage openMenu() {
+        WebElement menuButton = driver.findElement(MENU_BUTTON);
+        waitForElementLocated(menuButton, 5);
+        menuButton.click();
+        return new MenuModalPage(driver);
     }
 }

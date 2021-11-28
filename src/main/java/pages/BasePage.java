@@ -14,13 +14,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class BasePage {
     WebDriver driver;
     WebDriverWait wait;
+    public static final String BASE_URL = "https://www.saucedemo.com";
 
     BasePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-
-    public static final String BASE_URL = "https://www.saucedemo.com";
 
 
     @Step("Opening url: '{url}'")
@@ -49,5 +48,6 @@ public class BasePage {
     public String getUrl(){
         return  driver.getCurrentUrl();
     }
+
 
 }
