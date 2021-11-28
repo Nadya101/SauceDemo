@@ -3,6 +3,7 @@ package tests;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.CartPage;
@@ -18,8 +19,10 @@ public class BaseTest {
     LoginPage loginPage;
 
     @BeforeMethod
-    public void initTest() {
+    public void initTest(ITestContext context) {
         WebDriverManager.chromedriver().setup();
+        String driverVariable= "driver";
+        context.setAttribute(driverVariable, driver);
         driver = new ChromeDriver();
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
@@ -27,8 +30,10 @@ public class BaseTest {
         checkoutPage = new CheckoutPage(driver);
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void closeDriver() {
         driver.quit();
     }
+
+
 }
