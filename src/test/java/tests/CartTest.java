@@ -10,7 +10,7 @@ public class CartTest extends BaseTest {
     @Description("Add product 'Sauce Labs Bolt T-Shirt' to the cart")
     public void addProductToCartTest() {
         loginPage.openPage()
-                .login("standard_user", "secret_sauce")
+                .login(System.getProperty("username"), System.getProperty("password"))
                 .addProductToCart("Sauce Labs Bolt T-Shirt");
         cartPage.openPage();
         Assert.assertEquals(cartPage.getProductPrice("Sauce Labs Bolt T-Shirt"), "$15.99");
@@ -24,7 +24,7 @@ public class CartTest extends BaseTest {
                 .addProductToCart("Sauce Labs Bolt T-Shirt")
                 .addProductToCart("Sauce Labs Backpack");
         cartPage.openPage();
-        Assert.assertEquals(cartPage.getTotalElementsInCart(), 2, "Product wasn't added!");
+        Assert.assertEquals(cartPage.getTotalElementsInCart(), 2, "Product wasn't added correctly!");
     }
 
     @Test(description = "Remove product from cart")
