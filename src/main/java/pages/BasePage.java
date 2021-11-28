@@ -23,7 +23,7 @@ public class BasePage {
     public static final String BASE_URL = "https://www.saucedemo.com";
 
 
-    @Step("Opening ulr: '{url}'")
+    @Step("Opening url: '{url}'")
     public void openPage(String url) {
         driver.get(url);
     }
@@ -37,12 +37,17 @@ public class BasePage {
         wait = new WebDriverWait(driver, timeout);
         wait.until(ExpectedConditions.visibilityOf(element));
     }
+
     public void waitForPageLoaded() {
         new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver driver) {
                 return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
             }
         };
+    }
+
+    public String getUrl(){
+        return  driver.getCurrentUrl();
     }
 
 }
