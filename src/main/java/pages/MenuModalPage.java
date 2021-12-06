@@ -4,6 +4,8 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import utils.Waiters;
+
 
 public class MenuModalPage extends BasePage {
 
@@ -16,7 +18,7 @@ public class MenuModalPage extends BasePage {
     @Step("Logout user")
     public LoginPage clickLogoutButton() {
         WebElement logoutButton = driver.findElement(LOG_OUT_BUTTON);
-        waitForElementLocated(logoutButton, 5);
+        Waiters.waitForPageLoaded();
         logoutButton.click();
         return new LoginPage(driver);
     }
