@@ -1,20 +1,21 @@
 package pages;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
+import utils.Waiters;
 
-
+@Log4j2
 public class CartPage extends BasePage {
 
     public CartPage(WebDriver driver) {
         super(driver);
     }
 
-    public static final String CART_URL = "/cart.html";
     private static final String PRODUCT_PRICE = "//*[text()='%s']/ancestor::*[@class='cart_item']" +
             "//*[@class='inventory_item_price']";
     private static final String CHECKOUT_BUTTON = "//*[@data-test = 'checkout']";
@@ -27,32 +28,33 @@ public class CartPage extends BasePage {
     private static final String SHOPPING_CART_BADGE = "//*[@class = 'shopping_cart_badge']";
     private static final By MENU_BUTTON = By.id("react-burger-menu-btn");
 
-    public CartPage openPage() {
-        openPage(BASE_URL + CART_URL);
-        waitForPageLoaded();
+    public CartPage openProductPage() {
+           openPage(CART_URL);
+        Waiters.waitForPageLoaded();
         return this;
     }
 
     public String getProductPrice(String productName) {
-        return driver.findElement(By.xpath(String.format(PRODUCT_PRICE, productName))).getText();
-    }
-
-    public int getQuantityOfProducts(String productName) {
-        String quantityText = driver.findElement(By.xpath(String.format(PRODUCT_QUANTITY, productName))).getText();
-        return Integer.parseInt(quantityText);
+        log.info("Get price for product: "+productName);
+        String productPrice= driver.findElement(By.xpath(String.format(PRODUCT_PRICE, productName))).getText();
+        log.info("Price is: "+productPrice);
+        return productPrice;
     }
 
     @Step("Delete product '{productName}' from the cart")
     public void deleteProduct(String productName) {
+        log.info("Click on Remove button");
         driver.findElement(By.xpath(String.format(REMOVE_BUTTON, productName))).click();
     }
 
     public boolean isProductDisplayed(String productName) {
+        log.info("Check if product is displayed");
         List<WebElement> elements = driver.findElements(By.xpath(String.format(SEARCH_ELEMENT_BY_NAME, productName)));
         return elements.size() > 0;
     }
 
     public int getTotalElementsInCart() {
+        log.info("Get number of products in cart");
         String total = driver.findElement(By.xpath(SHOPPING_CART_BADGE)).getText();
         return Integer.parseInt(total);
     }
@@ -60,7 +62,7 @@ public class CartPage extends BasePage {
     @Step("Open menu")
     public MenuModalPage openMenu() {
         WebElement menuButton = driver.findElement(MENU_BUTTON);
-        waitForElementLocated(menuButton, 5);
+        log.info("Click on Menu button");
         menuButton.click();
         return new MenuModalPage(driver);
     }
